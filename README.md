@@ -19,3 +19,7 @@ git clone https://github.com/DeltaWarden/HealthHelper.git
 cd HealthHelper
 
 ./gradlew clean build
+```
+## License
+
+The project uses the MIT license
