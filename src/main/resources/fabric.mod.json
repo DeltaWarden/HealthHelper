@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "healthhelper",
+  "version": "${version}",
+  "name": "HealthHelper",
+  "description": "Adds health-notify helpers to Minecraft!",
+  "authors": [
+    "deltasquare"
+  ],
+  "contact": {
+    "homepage": "https://github.com/DeltaWarden/HealthHelper",
+    "sources": "https://github.com/DeltaWarden/HealthHelper"
+  },
+  "license": "MIT",
+  "icon": "assets/healthhelper/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.deltasquare.healthhelper.HealthHelperMod"
+    ],
+    "client": [
+      "com.deltasquare.healthhelper.HealthHelperClientMod"
+    ]
+  },
+  "mixins": [
+    "healthhelper.mixins.json",
+    {
+      "config": "healthhelper.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.5",
+    "minecraft": "1.21.5",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

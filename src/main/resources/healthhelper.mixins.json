@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "com.deltasquare.healthhelper.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"HealthHelperMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

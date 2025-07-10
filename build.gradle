@@ -1,0 +1,65 @@
+plugins {
+    id 'fabric-loom' version "${loom_version}"
+    id 'maven-publish'
+}
+
+version = "1.0.0"
+group = "com.deltasquare.healthhelper"
+
+repositories {
+    mavenCentral()
+}
+
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        healthhelper {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.21.5"
+    mappings "net.fabricmc:yarn:1.21.5+build.1:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.15.5"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.119.5+1.21.5"
+    include "net.fabricmc.fabric-api:fabric-api:0.119.5+1.21.5"
+}
+
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+    from("LICENSE") {
+        rename { "LICENSE_${archivesBaseName}" }
+    }
+}
+
+publishing {
+    publications {
+        create("mavenJava", MavenPublication) {
+            artifactId = archivesBaseName
+            from components.java
+        }
+    }
+    repositories {
+    }
+}
